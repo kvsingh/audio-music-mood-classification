@@ -16,10 +16,11 @@ sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : 
 app = Flask(__name__)
 
 # Setting up spotify tokens and authorization - hidden for github, use own tokens
-token = util.prompt_for_user_token(<INSERT SPOTIFY USERNAME>,
-                                   client_id=<INSERT SPOTIFY CLIENT ID>,
-                                   client_secret=<INSERT SPOTIFY CLIENT SECRET>,
-                                   redirect_uri=<INSERT REDIRECT URI>)
+scope = 'user-library-read'
+token = util.prompt_for_user_token('karan.kornguy', scope,
+                                   client_id='f10e1186477344bea6d61188c44e68a6',
+                                   client_secret='3c6f0777bcfd47f8b1d5c37f987af437',
+                                   redirect_uri='http://localhost:5000')
 
 spotify = spotipy.Spotify(auth=token)
 
@@ -104,4 +105,4 @@ def mood_maker(a):
     return data, 200, header
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8890, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
